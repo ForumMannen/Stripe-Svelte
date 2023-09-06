@@ -27,36 +27,55 @@ async function createUser(req, res) {
     const hashedPassword = await bcrypt.hash(dataInput.password, 10);
     console.log(customer);
     // res.status(200).json({ customer: customer });
-    fs.readFile(filePath, (err, data) => {
+    const users = req.userData;
+    const user = users.find((user) => user.email == req.params.email);
+    if (user) {
+      res.status(404).send("Email already exists");
+    }
+
+    const newUser = {
+      id: customer.id,
+      email: customer.email,
+      name: customer.name,
+      password: hashedPassword,
+    };
+    users.push(newUser);
+
+    fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
       if (err) {
-        console.error(err);
-        res.status(404).send("Couldn't get data!");
-        return;
+        res.status(404).send("Couldn't write to file!");
       }
-      const users = JSON.parse(data);
-      const user = users.find((user) => user.email == req.params.email);
-      if (user) {
-        res.status(404).send("Email already exists");
-      }
-
-      const newUser = {
-        id: customer.id,
-        email: customer.email,
-        name: customer.name,
-        password: hashedPassword,
-      };
-      users.push(newUser);
-
-      fs.writeFile(filePath, JSON.stringify(users, null, 2), (err) => {
-        if (err) {
-          res.status(404).send("Couldn't write to file!");
-        }
-        res.status(201).send(users);
-      });
+      res.status(201).send(users);
     });
   } catch (error) {
     console.log(error.message);
   }
 }
 
-module.exports = { getAllUsers, createUser };
+async function login(req, res) {
+  try {
+    console.log(req.userData);
+    const users = req.userData;
+    const existingUser = users.find(
+      (user) => user && user.email == req.params.email
+    );
+    if (!existingUser) {
+      return res.status(400).json("Wrong email or password");
+    }
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      existingUser.password
+    );
+    if (!validPassword) {
+      return res.status(401).json("Wrong email or password");
+    }
+    if (req.session) {
+      req.session.user = existingUser;
+    }
+    res.status(200).json(existingUser);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+module.exports = { getAllUsers, createUser, login };

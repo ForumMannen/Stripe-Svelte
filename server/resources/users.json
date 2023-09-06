@@ -32,5 +32,11 @@
     "email": "test112333@gmail.com",
     "name": "Åke",
     "password": "$2b$10$AbGNjiEtnVIlbXHZd8Sobun/TgdsE9ZJvod/mak/Ka90v43HzWfBK"
+  },
+  {
+    "id": "cus_OaURg2pvTqf34k",
+    "email": "essa@gmail.com",
+    "name": "Essa",
+    "password": "$2b$10$CAG8QIYCEL4fdvvqJnikzukCCJi9rJJf5URYl.tDh22Fm4/RL2Vdq"
   }
 ]
