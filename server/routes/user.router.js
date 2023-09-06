@@ -1,9 +1,15 @@
 const express = require("express");
-const { getAllUsers, createUser } = require("../controllers/user.controller");
+const {
+  getAllUsers,
+  createUser,
+  login,
+} = require("../controllers/user.controller");
+const { readUsersFile } = require("../middlewares");
 
 const userRouter = express
   .Router()
   .get("/users", getAllUsers)
-  .post("/createUser", createUser);
+  .post("/createUser", readUsersFile, createUser)
+  .post("/login/:email", readUsersFile, login);
 
 module.exports = { userRouter };

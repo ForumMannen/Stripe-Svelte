@@ -6,7 +6,16 @@ POST http://localhost:3000/api/createUser
 Content-Type: application/json
 
 {
-    "email": "test112333@gmail.com",
-    "name": "Åke",
+    "email": "essa@gmail.com",
+    "name": "Essa",
+    "password": "123"
+}
+
+###
+
+POST http://localhost:3000/api/login/test112333@gmail.com
+Content-Type: application/json
+
+{
     "password": "123"
 }
