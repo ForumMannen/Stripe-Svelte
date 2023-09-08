@@ -38,5 +38,11 @@
     "email": "essa@gmail.com",
     "name": "Essa",
     "password": "$2b$10$CAG8QIYCEL4fdvvqJnikzukCCJi9rJJf5URYl.tDh22Fm4/RL2Vdq"
+  },
+  {
+    "id": "cus_ObBbGrVUWpUQAX",
+    "email": "olle@mail.se",
+    "name": "Olle",
+    "password": "$2b$10$Efe/r067KbI0mh0cjRSsPOXxaujYtMKFRzLnlvACWINcEARxiTcCq"
   }
 ]

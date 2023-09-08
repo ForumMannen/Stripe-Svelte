@@ -10,6 +10,6 @@ const userRouter = express
   .Router()
   .get("/users", getAllUsers)
   .post("/createUser", readUsersFile, createUser)
-  .post("/login/:email", readUsersFile, login);
+  .post("/login", readUsersFile, login);
 
 module.exports = { userRouter };

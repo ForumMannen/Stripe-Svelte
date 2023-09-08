@@ -1,18 +1,14 @@
 <script lang="ts">
   import { Router, Link, Route } from "svelte-routing";
-  import Home from "./components/Home.svelte";
+  import Home from "./pages/Home.svelte";
   import Confirmation from "./components/Confirmation.svelte";
-  import Login from "./components/Login.svelte";
 </script>
 
-<Login />
 <Router>
   <div>
-    <Route path="/" component={Home}/>
-    <Route path="/confirmation" component={Confirmation}/>
+    <Route path="/" component={Home} />
   </div>
 </Router>
 
 <style>
-
 </style>
