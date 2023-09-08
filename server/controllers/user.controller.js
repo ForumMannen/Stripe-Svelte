@@ -54,18 +54,14 @@ async function createUser(req, res) {
 
 async function login(req, res) {
   try {
-    console.log(req.userData);
+    const { email, password } = req.body;
+    console.log(email);
     const users = req.userData;
-    const existingUser = users.find(
-      (user) => user && user.email == req.params.email
-    );
+    const existingUser = users.find((user) => user && user.email == email);
     if (!existingUser) {
       return res.status(400).json("Wrong email or password");
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      existingUser.password
-    );
+    const validPassword = await bcrypt.compare(password, existingUser.password);
     if (!validPassword) {
       return res.status(401).json("Wrong email or password");
     }
@@ -74,7 +70,8 @@ async function login(req, res) {
     }
     res.status(200).json(existingUser);
   } catch (error) {
-    console.log(error.message);
+    console.error(error);
+    res.status(500).json("Server Error");
   }
 }
 

@@ -1,19 +1,19 @@
 <script>
   let user = null;
+  let name = "";
   let email = "";
   let password = "";
 
-  async function loginUser() {
-    console.log("Login button clicked");
+  async function registerUser() {
+    console.log("Register button clicked");
     try {
       console.log(email);
-      // const apiURL = `/api/users/login/email=${encodeURIComponent(email)}`;
-      const response = await fetch("api/login", {
+      const response = await fetch("api/createUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       if (response.status === 200) {
@@ -30,7 +30,13 @@
 </script>
 
 <div>
-  <input type="email" id="email" bind:value={email} />
-  <input type="password" id="password" bind:value={password} />
-  <button on:click={loginUser}>Logga in</button>
+  <input type="text" id="name" bind:value={name} placeholder="Namn" />
+  <input type="email" id="email" bind:value={email} placeholder="Email" />
+  <input
+    type="password"
+    id="password"
+    bind:value={password}
+    placeholder="Lösenord"
+  />
+  <button on:click={registerUser}>Registrera</button>
 </div>
