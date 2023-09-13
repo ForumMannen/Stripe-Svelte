@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const { userRouter } = require("./routes/user.router");
+const { productsRouter } = require("./routes/products.router");
 
 const app = express();
 require("dotenv").config();
@@ -25,5 +26,6 @@ app.use(
 );
 
 app.use("/api", userRouter);
+app.use("/api", productsRouter);
 
 module.exports = { app };

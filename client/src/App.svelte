@@ -1,14 +1,15 @@
 <script lang="ts">
   import { Router, Link, Route } from "svelte-routing";
   import Home from "./pages/Home.svelte";
+  import { SvelteUIProvider } from "@svelteuidev/core";
   import Confirmation from "./components/Confirmation.svelte";
 </script>
 
-<Router>
-  <div>
+<SvelteUIProvider>
+  <Router>
     <Route path="/" component={Home} />
-  </div>
-</Router>
+  </Router>
+</SvelteUIProvider>
 
 <style>
 </style>

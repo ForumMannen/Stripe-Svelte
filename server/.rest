@@ -6,8 +6,8 @@ POST http://localhost:3000/api/createUser
 Content-Type: application/json
 
 {
-    "email": "essa@gmail.com",
-    "name": "Essa",
+    "email": "test@mail.com",
+    "name": "Test",
     "password": "123"
 }
 
@@ -17,6 +17,10 @@ POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {   
-    "email": "essa@gmail.com",
+    "email": "test@mail.com",
     "password": "123"
 }
+
+###
+
+GET http://localhost:3000/api/products
