@@ -2,8 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const filePath = path.join(__dirname, "../resources/users.json");
 const bcrypt = require("bcrypt");
-require("dotenv").config();
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { initStripe } = require("../stripe");
+const stripe = initStripe();
+// require("dotenv").config();
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 function getAllUsers(req, res) {
   fs.readFile(filePath, (err, data) => {
@@ -25,7 +27,7 @@ async function createUser(req, res) {
     });
     const dataInput = req.body;
     const hashedPassword = await bcrypt.hash(dataInput.password, 10);
-    console.log(customer);
+    // console.log(customer);
     // res.status(200).json({ customer: customer });
     const users = req.userData;
     const user = users.find((user) => user.email == req.params.email);
