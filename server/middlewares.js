@@ -11,7 +11,6 @@ function readUsersFile(req, res, next) {
       return;
     }
     req.userData = JSON.parse(data);
-    // console.log("Middleware", req.userData);
     next();
   });
 }

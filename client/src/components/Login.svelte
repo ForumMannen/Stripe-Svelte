@@ -1,13 +1,13 @@
 <script>
+  import { loggedIn, setLoggedIn } from "../store/login";
+  import { updateUser } from "../store/user";
+
   let user = null;
   let email = "";
   let password = "";
 
   async function loginUser() {
-    console.log("Login button clicked");
     try {
-      console.log(email);
-      // const apiURL = `/api/users/login/email=${encodeURIComponent(email)}`;
       const response = await fetch("api/login", {
         method: "POST",
         headers: {
@@ -18,8 +18,10 @@
 
       if (response.status === 200) {
         const responseData = await response.json();
-        user = responseData;
         console.log(responseData);
+        user = responseData;
+        setLoggedIn(true);
+        updateUser(responseData);
       } else if (response.status === 400 || response.status === 401) {
         console.log("Wrong email or password!");
       }

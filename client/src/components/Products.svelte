@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Router, Route, Link } from "svelte-routing";
+  import Cart from "../pages/Cart.svelte";
   import { onDestroy, onMount } from "svelte";
   import { productsArray, updateProductsArray } from "../store/products";
   import { addProductToCart, cartArray } from "../store/cart";
@@ -27,12 +29,10 @@
   let cartItems = [];
   const unsubscribe = cartArray.subscribe((items) => {
     cartItems = items;
-    // console.log(items);
   });
 
   function handleAddProductToCart(product: IProduct) {
     addProductToCart(product);
-    // console.log(cartArray);
   }
 
   onMount(async () => {
@@ -44,7 +44,11 @@
   });
 </script>
 
-{@debug cartArray}
+<Router>
+  <Route path="/cart" component={Cart} />
+</Router>
+
+<Link to="/cart">Din kundvagn</Link>
 
 {#if isLoading}
   <p>Loading...</p>
