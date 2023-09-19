@@ -7,14 +7,7 @@ interface ICartItem {
   pricePerCartItem: number;
   totalCartPrice: number;
 }
-
 export const cartArray = writable<ICartItem[]>([]);
-
-// function calculateTotalCartPrice(cartItems: ICartItem[]): number {
-//   return cartItems.reduce((total, item) => {
-//     return total + item.product.price * item.quantity;
-//   }, 0);
-// }
 
 export function addProductToCart(product: IProduct) {
   cartArray.update((items) => {
@@ -30,19 +23,21 @@ export function addProductToCart(product: IProduct) {
         product,
         quantity: 1,
         pricePerCartItem: product.price,
-        totalCartPrice: 0,
+        totalCartPrice: product.price,
       };
-      // console.log("Product added to cart", newItem);
       items.push(newItem);
     }
-    // const totalCartPrice = calculateTotalCartPrice(items);
+
     const totalCartPrice = items.reduce((total, item) => {
       return total + item.pricePerCartItem;
     }, 0);
 
     items.forEach((item) => (item.totalCartPrice = totalCartPrice));
-    console.log(items);
 
     return [...items];
   });
+}
+
+export function clearCart() {
+  cartArray.set([]);
 }

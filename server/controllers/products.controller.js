@@ -6,8 +6,6 @@ async function fetchAllProducts(req, res) {
     const products = await stripe.products.list({});
     const prices = await stripe.prices.list({});
 
-    // console.log(products.data);
-
     const productObjectWithPrice = products.data.map((product) => {
       const price = prices.data.find((price) => price.product === product.id);
 
@@ -17,9 +15,9 @@ async function fetchAllProducts(req, res) {
         description: product.description,
         price: price ? price.unit_amount / 100 : 0,
         images: product.images,
+        priceId: product.default_price,
       };
     });
-    // console.log(productObjectWithPrice);
     res.status(200).send(productObjectWithPrice);
   } catch (error) {
     console.error(error);

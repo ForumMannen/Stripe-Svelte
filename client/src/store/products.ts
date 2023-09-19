@@ -6,6 +6,7 @@ export interface IProduct {
   description: string;
   price: number;
   images: string[];
+  priceId: string;
 }
 
 export const productsArray = writable<IProduct[]>([]);

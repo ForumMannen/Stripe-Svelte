@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "cus_Od8R8euY2hPVGg",
+    "email": "test@mail.se",
+    "name": "Testet",
+    "password": "$2b$10$BKylvfEnFXM8dL7fNEe/se8zlOlBj/VUzVqgDEuZK1ucqRKwSCepq"
+  },
+  {
+    "id": "cus_OfLyGyizdBEpq1",
+    "email": "linus@mail.se",
+    "name": "Linus",
+    "password": "$2b$10$lpwsovxOtFOzzsVdvGyPpeSKxPYiw3s9KC.D5I1nfhFw8qSVGX7hK"
+  }
+]

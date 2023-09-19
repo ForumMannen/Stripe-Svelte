@@ -5,9 +5,7 @@
   let password = "";
 
   async function registerUser() {
-    console.log("Register button clicked");
     try {
-      console.log(email);
       const response = await fetch("api/createUser", {
         method: "POST",
         headers: {
@@ -19,7 +17,6 @@
       if (response.status === 200) {
         const responseData = await response.json();
         user = responseData;
-        console.log(responseData);
       } else if (response.status === 400 || response.status === 401) {
         console.log("Wrong email or password!");
       }

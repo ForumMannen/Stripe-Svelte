@@ -4,9 +4,6 @@ const filePath = path.join(__dirname, "../resources/users.json");
 const bcrypt = require("bcrypt");
 const { initStripe } = require("../stripe");
 const stripe = initStripe();
-// require("dotenv").config();
-// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 function getAllUsers(req, res) {
   fs.readFile(filePath, (err, data) => {
     if (err) {
@@ -27,8 +24,6 @@ async function createUser(req, res) {
     });
     const dataInput = req.body;
     const hashedPassword = await bcrypt.hash(dataInput.password, 10);
-    // console.log(customer);
-    // res.status(200).json({ customer: customer });
     const users = req.userData;
     const user = users.find((user) => user.email == req.params.email);
     if (user) {
@@ -57,7 +52,6 @@ async function createUser(req, res) {
 async function login(req, res) {
   try {
     const { email, password } = req.body;
-    console.log(email);
     const users = req.userData;
     const existingUser = users.find((user) => user && user.email == email);
     if (!existingUser) {
@@ -68,9 +62,10 @@ async function login(req, res) {
       return res.status(401).json("Wrong email or password");
     }
     if (req.session) {
-      req.session.user = existingUser;
+      const { password, ...userWithoutPassword } = existingUser;
+      req.session.user = userWithoutPassword;
+      res.status(200).json(userWithoutPassword);
     }
-    res.status(200).json(existingUser);
   } catch (error) {
     console.error(error);
     res.status(500).json("Server Error");
