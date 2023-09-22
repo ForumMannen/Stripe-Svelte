@@ -39,7 +39,6 @@ async function verifyPayment(req, res) {
         expand: ["line_items.data"],
       }
     );
-    console.log(session);
 
     const line_items = session.line_items && session.line_items.data;
 
@@ -88,8 +87,6 @@ async function verifyPayment(req, res) {
           }
         }
       );
-
-      console.log("ORDER", newOrder);
     }
 
     res.status(200).json({ verified: true });
@@ -98,4 +95,19 @@ async function verifyPayment(req, res) {
   }
 }
 
-module.exports = { createCheckoutSession, verifyPayment };
+async function fetchOrders(req, res) {
+  try {
+    if (!req.session || !req.session.isAuthenticated) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    const orders = req.orderData;
+    const filterOrders = orders.filter(
+      (order) => order.email == req.session.user.email
+    );
+    res.status(200).send(filterOrders);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+module.exports = { createCheckoutSession, verifyPayment, fetchOrders };

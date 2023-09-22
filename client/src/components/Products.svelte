@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { Router, Route, Link } from "svelte-routing";
-  import Cart from "../pages/Cart.svelte";
   import { onDestroy, onMount } from "svelte";
   import { productsArray, updateProductsArray } from "../store/products";
   import { addProductToCart, cartArray } from "../store/cart";
@@ -44,28 +42,26 @@
   });
 </script>
 
-<Router>
-  <Route path="/cart" component={Cart} />
-</Router>
-
-<Link to="/cart">Din kundvagn</Link>
-
-{#if isLoading}
-  <p>Loading...</p>
-{:else}
-  {#each $productsArray as product (product.id)}
-    <div id="description-container">
-      <h4>Name: {product.name}</h4>
-      <p>Description: {product.description}</p>
-      <p>Price: {product.price} kr</p>
+<div class="grid">
+  {#if isLoading}
+    <p>Loading...</p>
+  {:else}
+    <div class="main-container">
+      {#each $productsArray as product (product.id)}
+        <div class="product-container">
+          <div class="product-card">
+            <img src={product.images[0]} alt="Vans backpack" />
+            <div id="description-container">
+              <h4>{product.name}</h4>
+              <p>{product.description}</p>
+              <p>Price: {product.price} kr</p>
+              <button on:click={() => handleAddProductToCart(product)}
+                >Add to cart</button
+              >
+            </div>
+          </div>
+        </div>
+      {/each}
     </div>
-    {#each product.images as imageURL (imageURL)}
-      <div>
-        <img src={imageURL} alt="" />
-      </div>
-    {/each}
-    <button on:click={() => handleAddProductToCart(product)}
-      >Lägg i varukorg</button
-    >
-  {/each}
-{/if}
+  {/if}
+</div>

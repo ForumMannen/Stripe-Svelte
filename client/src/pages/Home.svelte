@@ -1,12 +1,10 @@
-<script>
-  import Login from "../components/Login.svelte";
-  import Register from "../components/Register.svelte";
+<script lang="ts">
   import Products from "../components/Products.svelte";
+  import Header from "../components/Header.svelte";
 </script>
 
 <header>
-  <Login />
-  <Register />
+  <Header />
 </header>
 
 <main>

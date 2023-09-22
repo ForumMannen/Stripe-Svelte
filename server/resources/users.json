@@ -1,14 +1,8 @@
 [
   {
-    "id": "cus_Od8R8euY2hPVGg",
-    "email": "test@mail.se",
-    "name": "Testet",
-    "password": "$2b$10$BKylvfEnFXM8dL7fNEe/se8zlOlBj/VUzVqgDEuZK1ucqRKwSCepq"
-  },
-  {
-    "id": "cus_OfLyGyizdBEpq1",
+    "id": "cus_OgaEUPHJ05qypQ",
     "email": "linus@mail.se",
     "name": "Linus",
-    "password": "$2b$10$lpwsovxOtFOzzsVdvGyPpeSKxPYiw3s9KC.D5I1nfhFw8qSVGX7hK"
+    "password": "$2b$10$4YT4utlvng58qSbGa2lipOGNxrCkcZewpIthw1nEBuQ.K10nFAiey"
   }
 ]

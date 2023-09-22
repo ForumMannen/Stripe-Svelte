@@ -1,66 +1,5 @@
 [
   {
-    "email": "test@mail.se",
-    "name": "Testet",
-    "products": [
-      {
-        "product": "Realm Backpack",
-        "price": 499,
-        "quantity": 1
-      },
-      {
-        "product": "Old Skool H2O Backpack",
-        "price": 549,
-        "quantity": 1
-      },
-      {
-        "product": "Old Skool Drop V Backpack",
-        "price": 499,
-        "quantity": 1
-      },
-      {
-        "product": "Obstacle Skatepack Backpack",
-        "price": 799,
-        "quantity": 1
-      }
-    ],
-    "totalPrice": 2346
-  },
-  {
-    "email": "test@mail.se",
-    "name": "Testet",
-    "products": [
-      {
-        "product": "Realm Backpack",
-        "price": 499,
-        "quantity": 1
-      },
-      {
-        "product": "Old Skool H2O Backpack",
-        "price": 549,
-        "quantity": 1
-      },
-      {
-        "product": "Old Skool Drop V Backpack",
-        "price": 499,
-        "quantity": 1
-      }
-    ],
-    "totalPrice": 1547
-  },
-  {
-    "email": "test@mail.se",
-    "name": "Testet",
-    "products": [
-      {
-        "product": "Realm Backpack",
-        "price": 499,
-        "quantity": 17
-      }
-    ],
-    "totalPrice": 5683.61
-  },
-  {
     "email": "linus@mail.se",
     "name": "Linus",
     "products": [
@@ -68,64 +7,25 @@
         "product": "Realm Backpack",
         "pricePerProduct": 499,
         "quantity": 1
-      }
-    ],
-    "totalDiscount": 4990,
-    "totalPrice": 449.1
-  },
-  {
-    "email": "test@mail.se",
-    "name": "Testet",
-    "products": [
-      {
-        "product": "Realm Backpack",
-        "pricePerProduct": 499,
-        "quantity": 1
-      }
-    ],
-    "totalDiscount": 49.9,
-    "totalPrice": 449.1
-  },
-  {
-    "email": "linus@mail.se",
-    "name": "Linus",
-    "products": [
+      },
       {
         "product": "Old Skool H2O Backpack",
         "pricePerProduct": 549,
-        "quantity": 3
-      }
-    ],
-    "totalDiscount": 164.7,
-    "totalPrice": 1482.3
-  },
-  {
-    "email": "linus@mail.se",
-    "name": "Linus",
-    "products": [
+        "quantity": 1
+      },
+      {
+        "product": "Old Skool Drop V Backpack",
+        "pricePerProduct": 499,
+        "quantity": 1
+      },
       {
         "product": "Obstacle Skatepack Backpack",
         "pricePerProduct": 799,
-        "quantity": 6
+        "quantity": 1
       }
     ],
-    "totalDiscount": 479.4,
-    "totalPrice": 4314.6,
-    "paymentStatus": "paid"
-  },
-  {
-    "email": "test@mail.se",
-    "name": "Testet",
-    "products": [
-      {
-        "product": "Old Skool H2O Backpack",
-        "pricePerProduct": 549,
-        "quantity": 3
-      }
-    ],
-    "priceWithoutDiscount": null,
-    "totalDiscount": 164.7,
-    "totalPrice": 1482.3,
+    "totalDiscount": 234.6,
+    "totalPrice": 2111.4,
     "paymentStatus": "paid"
   }
 ]

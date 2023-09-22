@@ -1,11 +1,10 @@
-import { writable } from "svelte/store";
+import { writable, derived } from "svelte/store";
 import type { IProduct } from "./products";
 
 interface ICartItem {
   product: IProduct;
   quantity: number;
   pricePerCartItem: number;
-  totalCartPrice: number;
 }
 export const cartArray = writable<ICartItem[]>([]);
 
@@ -23,20 +22,19 @@ export function addProductToCart(product: IProduct) {
         product,
         quantity: 1,
         pricePerCartItem: product.price,
-        totalCartPrice: product.price,
       };
       items.push(newItem);
     }
 
-    const totalCartPrice = items.reduce((total, item) => {
-      return total + item.pricePerCartItem;
-    }, 0);
-
-    items.forEach((item) => (item.totalCartPrice = totalCartPrice));
-
     return [...items];
   });
 }
+
+export const totalCartPrice = derived(cartArray, ($cartArray) => {
+  return $cartArray.reduce((total, item) => {
+    return total + item.pricePerCartItem;
+  }, 0);
+});
 
 export function clearCart() {
   cartArray.set([]);
