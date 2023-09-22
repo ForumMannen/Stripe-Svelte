@@ -1,3 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
 body {
-  font-family: Arial, sans-serif;
+  height: 100%;
+  font-family: "Titillium Web", sans-serif;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4rem;
+  width: 100%;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+button {
+  cursor: pointer;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+}
+
+main {
+  max-height: calc(100vh - 4rem);
+  margin-top: 4rem;
+  overflow-y: auto;
+  position: relative;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-content: center;
+  padding: 1rem;
+  gap: 1rem;
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.myOrders-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 3rem;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.description-container,
+button {
+  border: none;
+  border-radius: 0.4rem;
+  height: 1.5rem;
+  width: 8rem;
+  background-color: #ffc2d1;
+  color: #fb6f92;
+  text-shadow: #ffc2d1 1px 1px;
+  margin-top: 1rem;
+}
+
+.one-product-on-order {
+  display: flex;
+}
+
+.userButtons {
+  width: 7rem;
+  height: 2rem;
+  margin-right: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #fb6f92;
+  color: #ffc2d1;
+  text-shadow: black 1px 1px;
+}
+
+.bg {
+  background-image: linear-gradient(-60deg, #ffc2d1 50%, #fb6f92 50%);
+  bottom: 0;
+  left: -50%;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.total-price-in-cart {
+  margin-left: 1rem;
+}
+
+.p-tag-cart {
+  margin-left: 1rem;
+}
+
+.icon {
+  height: 4rem;
+  width: 4rem;
+}
+
+.userIcon {
+  height: 4rem;
+  width: 4rem;
+}
+
+.cartIcon {
+  height: 4rem;
+  width: 4rem;
 }

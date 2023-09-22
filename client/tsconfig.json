@@ -13,14 +13,17 @@
      */
     "allowJs": true,
     "checkJs": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "strict": true,
+    "jsx": "preserve"
   },
   "include": [
     "src/**/*.d.ts",
     "src/**/*.ts",
     "src/**/*.js",
     "src/**/*.svelte",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "src/**/*.jsx"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

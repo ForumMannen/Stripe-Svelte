@@ -4,32 +4,21 @@ const filePath = path.join(__dirname, "../resources/users.json");
 const bcrypt = require("bcrypt");
 const { initStripe } = require("../stripe");
 const stripe = initStripe();
-function getAllUsers(req, res) {
-  fs.readFile(filePath, (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send("Couldn't get data!");
-      return;
-    }
-    const users = JSON.parse(data);
-    res.status(200).send(users);
-  });
-}
 
 async function createUser(req, res) {
   try {
+    const dataInput = req.body;
+    const hashedPassword = await bcrypt.hash(dataInput.password, 10);
+    const users = req.userData;
+    const userWithEmail = users.find((user) => user.email === req.body.email);
+    if (userWithEmail) {
+      res.status(404).send("Email already exists");
+      return;
+    }
     const customer = await stripe.customers.create({
       email: req.body.email,
       name: req.body.name,
     });
-    const dataInput = req.body;
-    const hashedPassword = await bcrypt.hash(dataInput.password, 10);
-    const users = req.userData;
-    const user = users.find((user) => user.email == req.params.email);
-    if (user) {
-      res.status(404).send("Email already exists");
-    }
-
     const newUser = {
       id: customer.id,
       email: customer.email,
@@ -63,6 +52,7 @@ async function login(req, res) {
     }
     if (req.session) {
       const { password, ...userWithoutPassword } = existingUser;
+      req.session.isAuthenticated = true;
       req.session.user = userWithoutPassword;
       res.status(200).json(userWithoutPassword);
     }
@@ -72,4 +62,15 @@ async function login(req, res) {
   }
 }
 
-module.exports = { getAllUsers, createUser, login };
+async function logout(req, res) {
+  if (req.session) {
+    req.session.isAuthenticated = false;
+    req.session.user = null;
+    req.session.orders = null;
+    res.status(200).json({ message: "Successful Logout!" });
+  } else {
+    res.status(400).json({ message: "Session not found" });
+  }
+}
+
+module.exports = { createUser, login, logout };

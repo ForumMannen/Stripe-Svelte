@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { isPaymentVerified, setIsPaymentVerified } from "../store/payment";
+  import Header from "./Header.svelte";
 
   async function verifyPayment() {
     const sessionId = sessionStorage.getItem("session-id");
@@ -13,7 +14,6 @@
         },
         body: JSON.stringify({ sessionId }),
       });
-      console.log(response);
       const { verified } = await response.json();
       if (verified) {
         setIsPaymentVerified(true);
@@ -28,6 +28,10 @@
     verifyPayment();
   });
 </script>
+
+<header>
+  <Header />
+</header>
 
 <main>
   {#if $isPaymentVerified}
